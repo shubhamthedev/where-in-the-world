@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect, useRef } from "react";
+import { Switch, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import Navbar from "./components/Navbar";
+import axios from "axios";
+import "./sass/main.scss";
 function App() {
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const initialList = useRef(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("https://restcountries.eu/rest/v2/all");
+      initialList.current = response.data;
+      setCountries(initialList.current);
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => <HomePage countries={countries} loading={loading} />}
+        />
+      </Switch>
+    </>
   );
 }
 
