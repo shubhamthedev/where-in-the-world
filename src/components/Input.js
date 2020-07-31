@@ -6,8 +6,10 @@ function Input(props) {
       <div className="input__icon-area">
         <i className="input__icon fas fa-search"></i>
       </div>
+      <label htmlFor="country">Country</label>
       <input
         type="text"
+        id="country"
         className="input__type-area"
         placeholder="Search for the country.."
         aria-label="Search for a country"

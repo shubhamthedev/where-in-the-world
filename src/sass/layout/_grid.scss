@@ -5,4 +5,8 @@
   grid-column-gap: 5.2vw;
   grid-row-gap: 5vw;
   align-items: stretch;
+  @include respond(mobile) {
+    padding: 0 14vw;
+    grid-gap: 4rem;
+  }
 }

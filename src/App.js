@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Navbar from "./components/Navbar";
+import DetailsPage from "./components/DetailsPage";
 import axios from "axios";
 import "./sass/main.scss";
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [error, setError] = useState(false);
   const inputList = useRef(null);
   const region = useRef(null);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("https://restcountries.eu/rest/v2/all");
@@ -21,6 +23,7 @@ function App() {
     };
     fetchData();
   }, []);
+
   const inputHandler = (input) => {
     setcurrentInput(input);
     if (input === "") {
@@ -85,6 +88,13 @@ function App() {
               inputChanged={inputHandler}
               error={error}
             />
+          )}
+        />
+        <Route
+          exact
+          path="/details/:code"
+          render={(props) => (
+            <DetailsPage countries={initialList.current} {...props} />
           )}
         />
       </Switch>
