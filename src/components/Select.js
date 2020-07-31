@@ -6,8 +6,9 @@ function Select(props) {
   const clickHandler = () => {
     setIsActive(!isActive);
   };
-  const selectHandler = () => {
+  const selectHandler = (selection) => {
     setIsActive(false);
+    props.changed(selection);
   };
   const [isActive, setIsActive] = useState(false);
   return (

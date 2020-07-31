@@ -15,6 +15,18 @@ body {
   background-color: $color-light-grey;
   font-size: 1.4rem;
   color: $color-black;
+  &.dark {
+    color: $color-white;
+  }
+
+  &.detail {
+    background-color: $color-white;
+  }
+
+  &.dark,
+  &.dark.detail {
+    background-color: $color-dark-blue-2;
+  }
 }
 h1,
 h2,

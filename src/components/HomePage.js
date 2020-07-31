@@ -5,6 +5,7 @@ import FilteringArea from "./FilteringArea";
 import Input from "./Input";
 import Select from "./Select";
 import Spinner from "./Spinner";
+import Error from "./Error";
 
 function HomePage(props) {
   useEffect(() => {
@@ -14,18 +15,16 @@ function HomePage(props) {
 
   return (
     <main className="home">
-      {props.loading ? (
-        <Spinner />
+      <FilteringArea>
+        <Input changed={props.inputChanged} value={props.inputValue} />
+        <Select changed={props.regionHandler} selected={props.selectedRegion} />
+      </FilteringArea>
+      {props.loading ? <Spinner /> : null}
+      {!props.loading && (props.error || props.countries.length === 0) ? (
+        <Error />
       ) : (
-        <FilteringArea>
-          <Input changed={props.inputChanged} value={props.inputValue} />
-          <Select
-            changed={props.regionChanged}
-            selected={props.selectedRegion}
-          />
-        </FilteringArea>
+        <Grid items={props.countries} />
       )}
-      {!props.loading ? <Grid items={props.countries} /> : null}
     </main>
   );
 }

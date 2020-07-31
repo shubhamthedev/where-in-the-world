@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input() {
+function Input(props) {
   return (
     <div className="input">
       <div className="input__icon-area">
@@ -11,6 +11,8 @@ function Input() {
         className="input__type-area"
         placeholder="Search for the country.."
         aria-label="Search for a country"
+        value={props.value}
+        onChange={(e) => props.changed(e.target.value)}
       />
     </div>
   );
