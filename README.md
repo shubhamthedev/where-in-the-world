@@ -4,4 +4,6 @@
 
 - You could learn more about them over on [FrontEnd Mentor](https://www.frontendmentor.io)
 
-![frontend mentor image](./showcase.gif)
+- The Live site https://whereintheworldshubham.netlify.app/
+
+![frontend mentor image](./showcase2.gif)
